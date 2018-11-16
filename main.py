@@ -1,71 +1,53 @@
-# string constants 
-
-def n(income): 
- return 0 
-def S(n): 
- return 0 
-def taxes(n): 
- D(n) 
- S(n)
- return
-#N=S(n)*(D(n+1)-D(n))+sum() 
-
-#types=n(income()) 
-#tax=taxes(types)
-"""Case-study #2 Progressive tax
-Developers:
-Pichuev D (0%), Grasmik R (0%) 
-""" 
 import local
-S_list = [0.1, 0.15, 0.25, 0.28, 0.33, 0.35, 0.396]
-singleD = [0, 9076, 36901, 89351, 186351, 405101, 406751]
-doubleD = [0, 18151, 73801, 148851, 226851, 405101, 457601]
-parentD = [0, 12951, 49401, 127551, 206601, 405101, 432201]
+Interest_Rate = [0.1, 0.15, 0.25, 0.28, 0.33, 0.35, 0.396]
+singleSubjectTaxes = [0, 9076, 36901, 89351, 186351, 405101, 406751]
+doubleSubjectTaxes = [0, 18151, 73801, 148851, 226851, 405101, 457601]
+parentLonerSubjectTaxes = [0, 12951, 49401, 127551, 206601, 405101, 432201]
 sub_text = local.SUB_TEXT
 D_text = local.D_TEXT
 Month = local.MONTH
-def income():   
- #name_month = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"] 
+Tax=local.TAX
+Currency=local.CURRENCY
+CurrencySmall=local.CURRENCYSMALL
+def CountIncome():   
  annual_income = 0
- sumN=0
+ summaryN=0
  subject=int(input(sub_text)) 
  for month in range(12): 
      print('{} {}?:'.format(D_text,Month[month], end ='')) 
      income = float(input())   
-     sumN+=N(subject,int(income))
- print(local.TAX,sumN)
-     #annual_income += income 
- #return(annual_income) #D
-def N (subject, D):
+     summaryN+=CountTax(subject,int(income))
+     summaryN = round(summaryN,2)
+     
+ print(Tax,int(summaryN//1),Currency,int((summaryN%1*100)//10),CurrencySmall)
+def CountTax (subject, D):
     N=0
     if subject==1:
         i=0
-        while i<len(singleD):
-                if D-singleD[i]>0 and D-singleD[i+1]<0:
-                    N+=S_list[i]*(D-singleD[i])
+        while i<len(singleSubjectTaxes):
+                if D-singleSubjectTaxes[i]>0 and D-singleSubjectTaxes[i+1]<0:
+                    N+=Interest_Rate[i]*(D-singleSubjectTaxes[i])
                 else:
-                    if D-singleD[i]>0 and D-singleD[i+1]>0:
-                        N+=S_list[i]*(singleD[i+1]-singleD[i])
+                    if D-singleSubjectTaxes[i]>0 and D-singleSubjectTaxes[i+1]>0:
+                        N+=Interest_Rate[i]*(singleSubjectTaxes[i+1]-singleSubjectTaxes[i])
                 i+=1
     if subject==2:
         i=1
-        while i<len(doubleD):
-                if D-doubleD[i]>0 and D-doubleD[i+1]<0:
-                    N+=S_list[i]*(D-doubleD[i])
+        while i<len(doubleSubjectTaxes):
+                if D-doubleSubjectTaxes[i]>0 and D-doubleSubjectTaxes[i+1]<0:
+                    N+=Interest_Rate[i]*(D-doubleSubjectTaxes[i])
                 else:
-                    if D-doubleD[i]>0 and D-doubleD[i+1]>0:
-                        N+=S_list[i]*(doubleD[i+1]-doubleD[i])
+                    if D-doubleSubjectTaxes[i]>0 and D-doubleSubjectTaxes[i+1]>0:
+                        N+=Interest_Rate[i]*(doubleSubjectTaxes[i+1]-doubleSubjectTaxes[i])
                 i+=1
     if subject==3:
         i=1
-        while i<len(parentD):
-                if D-parentD[i]>0 and D-parentD[i+1]<0:
-                    N+=S_list[i]*(D-parentD[i])
+        while i<len(parentLonerSubjectTaxes):
+                if D-parentLonerSubjectTaxes[i]>0 and D-parentLonerSubjectTaxes[i+1]<0:
+                    N+=Interest_Rate[i]*(D-parentLonerSubjectTaxes[i])
                 else:
-                    if D-parentD[i]>0 and D-parentD[i+1]>0:
-                        N+=S_list[i]*(parentD[i+1]-parentD[i])
+                    if D-parentLonerSubjectTaxes[i]>0 and D-parentLonerSubjectTaxes[i+1]>0:
+                        N+=Interest_Rate[i]*(parentLonerSubjectTaxes[i+1]-parentLonerSubjectTaxes[i])
                 i+=1
     return N
-
-#N(int(input(sub_text)), int(income()))
-income()
+CountIncome()
