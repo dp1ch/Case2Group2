@@ -11,43 +11,43 @@ Currency=local.CURRENCY
 CurrencySmall=local.CURRENCYSMALL
 def CountIncome():   
  annual_income = 0
- summaryN=0
- subject=int(input(sub_text)) 
+ summaryN = 0
+ subject = int(input(sub_text)) 
  for month in range(12): 
      print('{} {}?:'.format(D_text,Month[month], end ='')) 
      income = float(input())   
-     summaryN+=CountTax(subject,int(income))
+     summaryN += CountTax(subject,int(income))
      summaryN = round(summaryN,2)
      
  print(Tax,int(summaryN//1),Currency,int((summaryN%1*100)//10),CurrencySmall)
 def CountTax (subject, D):
     N=0
-    if subject==1:
-        i=0
+    if subject == 1:
+        i = 0
         while i<len(singleSubjectTaxes):
                 if D-singleSubjectTaxes[i]>0 and D-singleSubjectTaxes[i+1]<0:
-                    N+=Interest_Rate[i]*(D-singleSubjectTaxes[i])
+                    N += Interest_Rate[i]*(D-singleSubjectTaxes[i])
                 else:
                     if D-singleSubjectTaxes[i]>0 and D-singleSubjectTaxes[i+1]>0:
-                        N+=Interest_Rate[i]*(singleSubjectTaxes[i+1]-singleSubjectTaxes[i])
-                i+=1
+                        N += Interest_Rate[i] * (singleSubjectTaxes[i+1]-singleSubjectTaxes[i])
+                i += 1
     if subject==2:
-        i=1
+        i = 1
         while i<len(doubleSubjectTaxes):
                 if D-doubleSubjectTaxes[i]>0 and D-doubleSubjectTaxes[i+1]<0:
-                    N+=Interest_Rate[i]*(D-doubleSubjectTaxes[i])
+                    N += Interest_Rate[i] * (D-doubleSubjectTaxes[i])
                 else:
                     if D-doubleSubjectTaxes[i]>0 and D-doubleSubjectTaxes[i+1]>0:
-                        N+=Interest_Rate[i]*(doubleSubjectTaxes[i+1]-doubleSubjectTaxes[i])
+                        N += Interest_Rate[i] * (doubleSubjectTaxes[i+1]-doubleSubjectTaxes[i])
                 i+=1
     if subject==3:
         i=1
         while i<len(parentLonerSubjectTaxes):
                 if D-parentLonerSubjectTaxes[i]>0 and D-parentLonerSubjectTaxes[i+1]<0:
-                    N+=Interest_Rate[i]*(D-parentLonerSubjectTaxes[i])
+                    N += Interest_Rate[i]*(D-parentLonerSubjectTaxes[i])
                 else:
                     if D-parentLonerSubjectTaxes[i]>0 and D-parentLonerSubjectTaxes[i+1]>0:
-                        N+=Interest_Rate[i]*(parentLonerSubjectTaxes[i+1]-parentLonerSubjectTaxes[i])
-                i+=1
+                        N += Interest_Rate[i]*(parentLonerSubjectTaxes[i+1]-parentLonerSubjectTaxes[i])
+                i += 1
     return N
 CountIncome()
